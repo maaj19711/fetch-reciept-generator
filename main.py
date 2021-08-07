@@ -69,6 +69,7 @@ reciept.drawImage('barcode/barcode.png', 50, 0)
 
 #Set up fonts
 pdfmetrics.registerFont(TTFont('MerchantCopy', 'fonts/MerchantCopy.ttf'))
+pdfmetrics.registerFont(TTFont('Helvetica-Light', 'fonts/Helvetica-Light.ttf'))
 
 reciept.setFont('MerchantCopy', 16)
 reciept.drawString(20, 365, storeaddress)
@@ -91,8 +92,8 @@ if (float(item3price) != 0 and float(item3qty) != 0):
 reciept.setFont('MerchantCopy', 16)
 reciept.drawRightString(125, 210, f"Subtotal: {float(item1price) * float(item1qty) + float(item2price) * float(item2qty) + float(item3price) * float(item3qty)}")
 reciept.drawRightString(125, 190, f"Tax: {roundtax}")
-reciept.drawRightString(125, 170, f"Cash: {total + float(extramoney)}")
-reciept.drawRightString(125, 150, f"Change: {(total + float(extramoney)) - total}")
+reciept.drawRightString(125, 170, f"Cash: {round(total + float(extramoney), 2)}")
+reciept.drawRightString(125, 150, f"Change: {round((total + float(extramoney)) - total, 2)}")
 
 reciept.setFont('MerchantCopy', 20)
 reciept.drawRightString(125, 100, f"Total: {total}")
