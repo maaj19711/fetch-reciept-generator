@@ -16,10 +16,10 @@
 ## Adding more images to the reciept generator
 
 - 1.) Make sure all images you would like to add follow the following requirements.
-      - Image file format ends with `.jpg`
-      - Images need to have a white or transparent background
-      - Images need to be resized to exactly 200x70 resolution for optimal results
-      - The image name is the name you will enter when you are asked for the store name in the program
+      1. Image file format ends with `.jpg`
+      2. Images need to have a white or transparent background
+      3. Images need to be resized to exactly 200x70 resolution for optimal results
+      4. The image name is the name you will enter when you are asked for the store name in the program
 
 - 2.) Move your image file to the /storeimg folder.
 
