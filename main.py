@@ -1,5 +1,17 @@
 import math
 import random
+import time
+import sys
+
+from reportlab.pdfgen import canvas
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfbase import pdfmetrics
+from reportlab.lib import colors, fonts
+
+## Generate receipt file
+
+filename = 'reciept.pdf'
+reciept = canvas.Canvas(f'output/{filename}', pagesize = (250, 445))
 
 ##   Customize reciepts   ##
 print("Fetch Reciept Generator")
@@ -9,7 +21,20 @@ scanned into the Fetch Rewards app. The purpose is to make the items reflect the
 current promotions that are going on to provide you maximium points \n \n""")
 
 #Store
+
 storename = input("Enter the name of the store: ")
+
+storeImg = f'storeimg/{storename}.jpg'
+
+try:
+     reciept.drawImage(storeImg, 25, 375, anchor='c')
+except:
+    print('Error, store image could not be loaded. Please check your spelling and try again. Quiting program in 5 seconds...')
+    time.sleep(5)
+    sys.exit()
+
+
+
 storeaddress = input("Enter the store address in this format '11111 Street Rd, City, State, Zip Code': ")
 
 #Date/Time
@@ -43,16 +68,9 @@ print(total)
 extramoney = random.randrange(5, 30)
 
 ##   Pdf generation   ##
-from reportlab.pdfgen import canvas
-from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.pdfbase import pdfmetrics
-from reportlab.lib import colors, fonts
 from barcode import EAN13
 from barcode import writer
 from PIL import Image
-
-filename = 'reciept.pdf'
-storeImg = f'storeimg/{storename}.jpg'
 
 reciept_barcode = EAN13(str(barid), writer.ImageWriter('PNG'))
 reciept_barcode.save('barcode/barcode')
@@ -61,7 +79,6 @@ barcode_old = Image.open('barcode/barcode.png')
 barcode_new = barcode_old.resize((150, 50))
 barcode_new.save('barcode/barcode.png')
 
-reciept = canvas.Canvas(f'output/{filename}', pagesize = (250, 445))
 reciept.setTitle('Reciept')
 
 reciept.drawImage(storeImg, 25, 375, anchor='c')
@@ -69,7 +86,6 @@ reciept.drawImage('barcode/barcode.png', 50, 0)
 
 #Set up fonts
 pdfmetrics.registerFont(TTFont('MerchantCopy', 'fonts/MerchantCopy.ttf'))
-pdfmetrics.registerFont(TTFont('Helvetica-Light', 'fonts/Helvetica-Light.ttf'))
 
 reciept.setFont('MerchantCopy', 16)
 reciept.drawString(20, 365, storeaddress)
