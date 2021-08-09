@@ -1,13 +1,13 @@
 # Fetch-Reciept-Generator
 
-## How to install (with from source)
+## How to install (with python 3.9.0)
 
 - 1.) Open commmand prompt in the directory with the source code. 
 - 2.) Use the command `pip install -r requirements.txt` to install all dependencies.
 - 3.) Run main.py and use the console window that appears to customize your receipt.
 - 4.) Open the output directory and find the reciept.pdf. Open the file and enjoy!
 
-## How to install (from without python)
+## How to install (without python, native executable)
 
 - 1.) Download the .zip file found in the releases page on Github.
 - 2.) Unzip the file and make sure a main.exe file and other folders such as /output, /storeimg, /barcode, and /fonts are found in the root directory.
