@@ -27,7 +27,7 @@ storename = input("Enter the name of the store: ")
 storeImg = f'storeimg/{storename}.jpg'
 
 try:
-     reciept.drawImage(storeImg, 25, 375, anchor='c')
+    reciept.drawImage(storeImg, 25, 375, anchor='c')
 except:
     print('Error, store image could not be loaded. Please check your spelling and try again. Quiting program in 5 seconds...')
     time.sleep(5)
